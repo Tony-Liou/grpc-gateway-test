@@ -11,8 +11,8 @@ package v1
 import (
 	"context"
 	"io"
+	extV1 "mygateway/gen/go/your/service/v1"
 	"net/http"
-	//extV1 "yourprotos/gen/go/your/service/v1"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_YourService_Echo_0(ctx context.Context, marshaler runtime.Marshaler, client YourServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StringMessage
+func request_YourService_Echo_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.YourServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.StringMessage
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_YourService_Echo_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_YourService_Echo_0(ctx context.Context, marshaler runtime.Marshaler, server YourServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StringMessage
+func local_request_YourService_Echo_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.YourServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.StringMessage
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -70,7 +70,7 @@ func local_request_YourService_Echo_0(ctx context.Context, marshaler runtime.Mar
 // UnaryRPC     :call YourServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterYourServiceHandlerFromEndpoint instead.
-func RegisterYourServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server YourServiceServer) error {
+func RegisterYourServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.YourServiceServer) error {
 
 	mux.Handle("POST", pattern_YourService_Echo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -126,7 +126,7 @@ func RegisterYourServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 // RegisterYourServiceHandler registers the http handlers for service YourService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterYourServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterYourServiceHandlerClient(ctx, mux, NewYourServiceClient(conn))
+	return RegisterYourServiceHandlerClient(ctx, mux, extV1.NewYourServiceClient(conn))
 }
 
 // RegisterYourServiceHandlerClient registers the http handlers for service YourService
@@ -134,7 +134,7 @@ func RegisterYourServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.YourServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "extV1.YourServiceClient" to call the correct interceptors.
-func RegisterYourServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client YourServiceClient) error {
+func RegisterYourServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.YourServiceClient) error {
 
 	mux.Handle("POST", pattern_YourService_Echo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

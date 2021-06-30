@@ -1,6 +1,6 @@
 syntax = "proto3";
  package your.service.v1;
- option go_package = "yourprotos/gen/go/your/service/v1";
+ option go_package = "mygateway/gen/go/your/service/v1";
 
  message StringMessage {
    string value = 1;

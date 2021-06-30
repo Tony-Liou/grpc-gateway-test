@@ -5,8 +5,9 @@ import (
 	"log"
 	"net"
 
+	servicepb "mygateway/gen/go/your/service/v1"
+
 	"google.golang.org/grpc"
-	servicepb "mypackage.com/gateway/gen/go/your/service/v1"
 )
 
 const port = ":9090"
